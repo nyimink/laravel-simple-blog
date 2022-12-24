@@ -9,15 +9,6 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        // dd("Articles controller index");
-        // return view('articles.index');
-
-        // $data = [
-        //     ['id' => 1, 'title' => 'First Article'],
-        //     ['id' => 2, 'title' => 'Second Article'],
-        // ];
-
-        // $data = Article::all();
 
         $data = Article::latest()->paginate(5);
 

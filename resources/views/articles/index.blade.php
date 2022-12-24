@@ -18,7 +18,7 @@
                 <div class="card-subtitle mb-2 text-muted small">
                     {{ $article->created_at->diffForHumans() }}
                 </div>
-                <div class="card-text">{{ $article->body }}</div>
+                <div class="card-text mb-2">{{ $article->body }}</div>
                 <a class="card-link" href="{{ url ("/articles/detail/$article->id") }}" >View Detail &raquo;</a>
             </div>
         </div>
