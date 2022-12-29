@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/articles', [ArticleController::class, "index"]);
 Route::get('/articles/detail/{id}', [ArticleController::class, "detail"]);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\ArticleController::class, 'index'])->name('home');
 
 Route::get('/articles/add', [ArticleController::class, "add"]);
 Route::post('articles/add', [ArticleController::class, "create"]);

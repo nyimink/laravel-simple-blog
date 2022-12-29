@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -26,5 +27,15 @@ class DatabaseSeeder extends Seeder
                 "name" => $name,
             ]);
         }
+
+        User::factory()->create([
+            "name" => "Alice",
+            "email" => "alice@gmail.com",
+        ]);
+
+        User::factory()->create([
+            "name" => "Bob",
+            "email" => "bob@gmail.com",
+        ]);
     }
 }
