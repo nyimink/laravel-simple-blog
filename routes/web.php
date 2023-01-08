@@ -33,3 +33,6 @@ Route::get('/articles/delete/{id}', [ArticleController::class, "delete"]);
 
 Route::get('/comments/delete/{id}', [CommentController::class, "delete"]);
 Route::post('/comments/add', [CommentController::class, "create"]);
+
+Route::get('/articles/edit/{id}', [ArticleController::class, "edit"]);
+Route::post('/articles/edit/{id}', [ArticleController::class, "update"]);

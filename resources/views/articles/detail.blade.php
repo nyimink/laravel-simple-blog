@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section ("content")
+@section('content')
     <div class="container">
         @if (session('error'))
             <div class="alert alert-warning">
@@ -11,25 +11,33 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $article->title }}</h5>
                 <div class="card-subtitle mb-2 text-muted small">
+                    <b class="text-success">
+                        {{ $article->user->name }}.
+                    </b>
                     {{ $article->created_at->diffForHumans() }},
                     Category: <b>{{ $article->category->name }}</b>
                 </div>
                 <p class="card-text">{{ $article->body }}</p>
                 @auth
-                    <a class="btn btn-danger" href="{{ url ("/articles/delete/$article->id") }}">
-                        Delete
-                    </a>
+                    @can ('article-delete', $article)
+                        <a href="{{ url("/articles/edit/$article->id") }}" class="btn btn-warning">
+                            Edit
+                        </a>
+                        <a class="btn btn-danger" href="{{ url("/articles/delete/$article->id") }}">
+                            Delete
+                        </a>
+                    @endcan
                 @endauth
             </div>
         </div>
         <ul class="list-group">
             <li class="list-group-item active">
-                <b>Comments ({{ count( $article->comments ) }})</b>
+                <b>Comments ({{ count($article->comments) }})</b>
             </li>
             @foreach ($article->comments as $comment)
                 <li class="list-group-item">
                     <div>
-                        <b class="text-success">{{ $comment->user->name }}</b>
+                        <b class="text-success">{{ $comment->user->name }}.</b>
                         <small class="text-muted">{{ $comment->created_at->diffForHumans() }}</small>
                     </div>
                     @auth
@@ -39,14 +47,13 @@
                 </li>
             @endforeach
         </ul>
-       @auth
-         <form action="{{ url("/comments/add") }}" method="post">
-             @csrf
-             <input type="hidden" name="article_id" value="{{ $article->id }}">
-             <textarea name="content" class="form-control my-2" placeholder="New Comment"></textarea>
-             <button class="btn btn-secondary">Comment</button>
-         </form>
-       @endauth
+        @auth
+            <form action="{{ url('/comments/add') }}" method="post">
+                @csrf
+                <input type="hidden" name="article_id" value="{{ $article->id }}">
+                <textarea name="content" class="form-control my-2" placeholder="New Comment"></textarea>
+                <button class="btn btn-secondary">Comment</button>
+            </form>
+        @endauth
     </div>
-
 @endsection

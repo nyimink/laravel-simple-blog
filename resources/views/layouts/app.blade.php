@@ -36,7 +36,7 @@
                         <li class="nav-item">
                             @auth
                                 <a href="{{ url('/articles/add') }}" class="nav-link text-success">
-                                    + Add Article
+                                    + What's on your mind?
                                 </a>
                             @endauth
                         </li>
